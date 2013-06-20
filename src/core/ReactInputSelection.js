@@ -27,6 +27,10 @@ function getActiveElement() {
   }
 }
 
+function isInDocument(elem) {
+  return document.documentElement.contains(elem);
+}
+
 /**
  * @ReactInputSelection: React input selection module. Based on Selection.js,
  * but modified to be suitable for react and has a couple of bug fixes (doesn't
@@ -64,7 +68,7 @@ var ReactInputSelection = {
     var priorFocusedElem = priorSelectionInformation.focusedElem;
     var priorSelectionRange = priorSelectionInformation.selectionRange;
     if (curFocusedElem !== priorFocusedElem &&
-        document.getElementById(priorFocusedElem.id)) { // TODO
+        isInDocument(priorFocusedElem)) {
       if (ReactInputSelection.hasSelectionCapabilities(priorFocusedElem)) {
         ReactInputSelection.setSelection(
           priorFocusedElem,
