@@ -64,7 +64,7 @@ var ReactInputSelection = {
     var priorFocusedElem = priorSelectionInformation.focusedElem;
     var priorSelectionRange = priorSelectionInformation.selectionRange;
     if (curFocusedElem !== priorFocusedElem &&
-        document.getElementById(priorFocusedElem.id)) {
+        document.getElementById(priorFocusedElem.id)) { // TODO
       if (ReactInputSelection.hasSelectionCapabilities(priorFocusedElem)) {
         ReactInputSelection.setSelection(
           priorFocusedElem,

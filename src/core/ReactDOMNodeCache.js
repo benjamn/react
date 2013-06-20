@@ -46,9 +46,9 @@ var ReactDOMNodeCache = {
       ExecutionEnvironment.canUseDOM,
       'getDOMNode(): The DOM is not supported in the current environment.'
     );
-    if (!nodeCache[id]) {
+    if (!nodeCache[id]) { // TODO Prime.
       nodeCache[id] =
-        document.getElementById(id) ||
+        document.getElementById(id) || // TODO Remove.
         ReactMount.findReactRenderedDOMNodeSlow(id);
     }
     return nodeCache[id];
