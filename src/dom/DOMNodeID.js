@@ -13,28 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * @providesModule getDOMNodeID
+ * @providesModule DOMNodeID
  * @typechecks
  */
 
 "use strict";
 
+// This should remain the only place in the codebase that cares (or
+// directly knows) what the name of the ID attribute actually is.
+var ID_ATTR_NAME = "id";
+
 /**
- * Accessing "id" or calling getAttribute('id') on a form element can return its
- * control whose name or ID is "id". All DOM nodes support `getAttributeNode`
- * but this can also get called on other objects so just return '' if we're
- * given something other than a DOM node (such as window).
+ * Accessing domNode[ID_ATTR_NAME] or calling getAttribute(ID_ATTR_NAME)
+ * on a form element can return its control whose name or ID equal to
+ * ID_ATTR_NAME. All DOM nodes support `getAttributeNode` but this can
+ * also get called on other objects so just return '' if we're given
+ * something other than a DOM node (such as window).
  *
  * @param {DOMElement|DOMWindow|DOMDocument} domNode DOM node.
  * @returns {string} ID of the supplied `domNode`.
  */
-function getDOMNodeID(domNode) {
-  if (domNode.getAttributeNode) {
-    var attributeNode = domNode.getAttributeNode('id');
+exports.get = function(domNode) {
+  if (domNode && domNode.getAttributeNode) {
+    var attributeNode = domNode.getAttributeNode(ID_ATTR_NAME);
     return attributeNode && attributeNode.value || '';
-  } else {
-    return '';
   }
-}
+  return '';
+};
 
-module.exports = getDOMNodeID;
+exports.set = function(domNode, id) {
+  domNode.setAttribute(ID_ATTR_NAME, id);
+};

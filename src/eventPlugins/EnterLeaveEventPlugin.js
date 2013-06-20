@@ -25,7 +25,7 @@ var ExecutionEnvironment = require('ExecutionEnvironment');
 var ReactInstanceHandles = require('ReactInstanceHandles');
 var SyntheticMouseEvent = require('SyntheticMouseEvent');
 
-var getDOMNodeID = require('getDOMNodeID');
+var getDOMNodeID = require('DOMNodeID').get;
 var keyOf = require('keyOf');
 
 var topLevelTypes = EventConstants.topLevelTypes;

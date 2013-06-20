@@ -21,6 +21,9 @@
 
 var React = require('React');
 var ReactTestUtils = require('ReactTestUtils');
+var DOMNodeID = require("DOMNodeID");
+var getId = DOMNodeID.get;
+var setId = DOMNodeID.set;
 
 /**
  * Ensure that all callbacks are invoked, passing this unique argument.
@@ -90,12 +93,12 @@ describe('ReactInstanceHandles', function() {
       parentNode.appendChild(childNodeA);
       parentNode.appendChild(childNodeB);
 
-      parentNode.id = '.react[0]';
-      childNodeA.id = '.react[0].0';
-      childNodeB.id = '.react[0].0:1';
+      setId(parentNode, '.react[0]');
+      setId(childNodeA, '.react[0].0');
+      setId(childNodeB, '.react[0].0:1');
 
       expect(
-        ReactInstanceHandles.findComponentRoot(parentNode, childNodeB.id)
+        ReactInstanceHandles.findComponentRoot(parentNode, getId(childNodeB))
       ).toBe(childNodeB);
     });
   });

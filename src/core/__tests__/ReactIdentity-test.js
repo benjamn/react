@@ -22,6 +22,7 @@
 var React;
 var ReactTestUtils;
 var reactComponentExpect;
+var getId;
 
 describe('ReactIdentity', function() {
 
@@ -30,11 +31,12 @@ describe('ReactIdentity', function() {
     React = require('React');
     ReactTestUtils = require('ReactTestUtils');
     reactComponentExpect = require('reactComponentExpect');
+    getId = require("DOMNodeID").get;
   });
 
   var idExp = /^\.reactRoot\[\d+\](.*)$/;
   function checkId(child, expectedId) {
-    var actual = idExp.exec(child.id);
+    var actual = idExp.exec(getId(child));
     var expected = idExp.exec(expectedId);
     expect(actual).toBeTruthy();
     expect(expected).toBeTruthy();

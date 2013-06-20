@@ -21,6 +21,7 @@
 var ReactEventEmitter = require('ReactEventEmitter');
 var ReactInstanceHandles = require('ReactInstanceHandles');
 var ReactEventTopLevelCallback = require('ReactEventTopLevelCallback');
+var getDOMNodeID = require("DOMNodeID").get;
 
 /** Mapping from reactRoot DOM ID to React component instance. */
 var instanceByReactRootID = {};
@@ -41,8 +42,7 @@ function getReactRootElementInContainer(container) {
  * @return {?string} A "reactRoot" ID, if a React component is rendered.
  */
 function getReactRootID(container) {
-  var rootElement = getReactRootElementInContainer(container);
-  return rootElement && rootElement.id;
+  return getDOMNodeID(getReactRootElementInContainer(container));
 }
 
 /**

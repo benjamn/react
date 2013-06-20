@@ -19,7 +19,7 @@
 
 "use strict";
 
-var getDOMNodeID = require('getDOMNodeID');
+var getDOMNodeID = require('DOMNodeID').get;
 var invariant = require('invariant');
 
 var SEPARATOR = '.';
@@ -285,9 +285,10 @@ var ReactInstanceHandles = {
   findComponentRoot: function(ancestorNode, id) {
     var child = ancestorNode.firstChild;
     while (child) {
-      if (id === child.id) {
+      var childId = getDOMNodeID(child);
+      if (id === childId) {
         return child;
-      } else if (isAncestorIDOf(child.id, id)) {
+      } else if (isAncestorIDOf(childId, id)) {
         return ReactInstanceHandles.findComponentRoot(child, id);
       }
       child = child.nextSibling;

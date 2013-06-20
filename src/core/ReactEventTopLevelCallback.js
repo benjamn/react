@@ -23,7 +23,7 @@ var ExecutionEnvironment = require('ExecutionEnvironment');
 var ReactEventEmitter = require('ReactEventEmitter');
 var ReactInstanceHandles = require('ReactInstanceHandles');
 
-var getDOMNodeID = require('getDOMNodeID');
+var getDOMNodeID = require('DOMNodeID').get;
 var getEventTarget = require('getEventTarget');
 
 /**
