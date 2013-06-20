@@ -38,7 +38,7 @@ var ReactDOMNodeCache = {
    * Finds the node with the supplied React-generated DOM ID.
    *
    * @param {string} id A React-generated DOM ID.
-   * @return {?DOMElement} DOM node with the suppled `id`.
+   * @return {?DOMElement} DOM node with the supplied `id`.
    * @internal
    */
   getNodeByID: function(id) {
@@ -46,10 +46,22 @@ var ReactDOMNodeCache = {
       ExecutionEnvironment.canUseDOM,
       'getDOMNode(): The DOM is not supported in the current environment.'
     );
-    if (!nodeCache[id]) { // TODO Prime.
+    if (!nodeCache[id]) {
       nodeCache[id] = ReactMount.findReactRenderedDOMNodeSlow(id);
     }
     return nodeCache[id];
+  },
+
+  /**
+   * Primes the nodeCache for a given ID and node.
+   *
+   * @param {string} id A React-generated DOM ID.
+   * @param {DOMElement} node DOM node with the supplied `id`.
+   * @return {DOMElement} The DOM node primed.
+   * @internal
+   */
+  primeID: function(id, node) {
+    return nodeCache[id] = node;
   },
 
   /**
