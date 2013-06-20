@@ -22,8 +22,6 @@ var ReactEventEmitter = require('ReactEventEmitter');
 var ReactInstanceHandles = require('ReactInstanceHandles');
 var ReactEventTopLevelCallback = require('ReactEventTopLevelCallback');
 
-var $ = require('$');
-
 /** Mapping from reactRoot DOM ID to React component instance. */
 var instanceByReactRootID = {};
 
@@ -198,19 +196,6 @@ var ReactMount = {
    */
   constructAndRenderComponent: function(constructor, props, container) {
     return ReactMount.renderComponent(constructor(props), container);
-  },
-
-  /**
-   * Constructs a component instance of `constructor` with `initialProps` and
-   * renders it into a container node identified by supplied `id`.
-   *
-   * @param {function} componentConstructor React component constructor
-   * @param {?object} props Initial props of the component instance.
-   * @param {string} id ID of the DOM element to render into.
-   * @return {ReactComponent} Component instance rendered in the container node.
-   */
-  constructAndRenderComponentByID: function(constructor, props, id) {
-    return ReactMount.constructAndRenderComponent(constructor, props, $(id));
   },
 
   /**
