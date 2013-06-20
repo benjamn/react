@@ -21,8 +21,8 @@ var React = require('React');
 var ReactComponent = require('ReactComponent');
 var ReactEventEmitter = require('ReactEventEmitter');
 var ReactTextComponent = require('ReactTextComponent');
+var ReactDOMNodeCache = require('ReactDOMNodeCache');
 
-var ge = require('ge');
 var mergeInto = require('mergeInto');
 
 var topLevelTypes = EventConstants.topLevelTypes;
@@ -214,7 +214,7 @@ var ReactTestUtils = {
       ReactEventEmitter.TopLevelCallbackCreator.createTopLevelCallback(
         topLevelType
       );
-    var node = ge(reactRootID);
+    var node = ReactDOMNodeCache.getNodeByID(reactRootID);
     fakeNativeEvent.target = node;
     /* jsdom is returning nodes without id's - fixing that issue here. */
     node.id = reactRootID;
