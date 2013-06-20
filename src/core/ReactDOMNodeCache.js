@@ -95,4 +95,11 @@ var ReactDOMNodeCache = {
 
 };
 
-module.exports = ReactDOMNodeCache;
+// Copy properties to the exports object instead of setting module.exports
+// so that we never clobber an exports object that may have been returned
+// previously.
+for (var name in ReactDOMNodeCache) {
+  if (ReactDOMNodeCache.hasOwnProperty(name)) {
+    exports[name] = ReactDOMNodeCache[name];
+  }
+}
